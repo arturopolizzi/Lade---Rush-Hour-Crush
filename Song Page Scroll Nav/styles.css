@@ -1,0 +1,7 @@
+/* make window 2x size of viewport */
+html, body {
+    height: 200vh;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; */
+}
