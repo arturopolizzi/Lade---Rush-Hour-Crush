@@ -10,21 +10,12 @@ function getNormalizedCenterY() {
     return (currentCenterY - minCenterY) / (maxCenterY - minCenterY);
 }
 
-// log normalized centerY on scroll
-window.addEventListener('scroll', () => {
-    currentCenterY = window.innerHeight / 2 + window.scrollY;
-    console.log('Center Y:', currentCenterY);
-    const normalizedCenterY = getNormalizedCenterY();
-    console.log('Normalized Center Y:', normalizedCenterY);
-});
-
 song = new Audio('01 - Fiesta.mp3');
-// make the current play position of the song depend on the normalized centerY value
+song.play();
+//make the current scroll position of the page depend on a normalised time value of the song
 song.addEventListener('timeupdate', () => {
-    const normalizedCenterY = getNormalizedCenterY();
-    song.currentTime = normalizedCenterY * song.duration;
-});
-
-// play the song
-song.loop = true;
-song.play(); 
+    const normalizedTime = song.currentTime / song.duration;
+    const targetCenterY = minCenterY + normalizedTime * (maxCenterY - minCenterY);
+    const targetScrollY = targetCenterY - (window.innerHeight / 2);
+    window.scrollTo(0, targetScrollY);
+})
