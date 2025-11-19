@@ -39,3 +39,4 @@ window.addEventListener('scroll', () => {
 window.addEventListener('resize', () => {
     console.log(getValues());
 });
+
